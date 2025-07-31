@@ -1,0 +1,395 @@
+/* Import Poppins font - matches your main site font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(135deg, #7335b7 0%, #5a2a8f 100%);
+    padding: 20px;
+}
+
+/* Fixed container sizing and padding */
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+.auth-container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #7335b7, #9254d4, #7335b7, #5a2a8f);
+    z-index: -1;
+    transform: translateZ(0);
+    animation: gradientBg 5s ease infinite;
+    background-size: 200% 200%;
+    opacity: 0.3;
+    border-radius: 20px;
+}
+
+@keyframes gradientBg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.auth-container h2 {
+    text-align: center;
+    color: #5a2a8f;
+    margin-bottom: 30px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.auth-container h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(to right, #5a2a8f, #7335b7);
+}
+
+.toggle-form {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.toggle-form button {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 10px;
+    color: #999;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid #eee;
+}
+
+.toggle-form button.active {
+    color: #5a2a8f;
+    border-bottom: 2px solid #7335b7;
+}
+
+/* Fixed input group spacing and alignment */
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    color: #555;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 15px;
+    color: #333;
+    transition: all 0.3s ease;
+    background-color: white; /* Ensure white background for input fields */
+}
+
+.input-group input:focus {
+    border-color: #7335b7;
+    box-shadow: 0 0 0 3px rgba(115, 53, 183, 0.1);
+    outline: none;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    bottom: 14px; /* Adjusted position to better align with input text */
+    font-size: 18px;
+    color: #7335b7;
+    pointer-events: none; /* Prevents icon from interfering with input */
+}
+
+.input-group select {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 15px;
+    color: #333;
+    -webkit-appearance: none;
+    background: url("data:image/svg+xml;utf8,<svg fill='%237335b7' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 15px center;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.remember-forgot label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.remember-forgot a {
+    color: #7335b7;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(45deg, #5a2a8f, #7335b7);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.auth-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(83, 43, 140, 0.3);
+}
+
+.auth-btn:active {
+    transform: translateY(-1px);
+}
+
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.divider:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #eee;
+}
+
+.divider span {
+    position: relative;
+    background: white;
+    padding: 0 15px;
+    color: #999;
+    font-size: 14px;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.social-btn i {
+    font-size: 20px;
+}
+
+.social-btn.google i {
+    color: #DB4437;
+}
+
+.social-btn.facebook i {
+    color: #4267B2;
+}
+
+.social-btn.twitter i {
+    color: #1DA1F2;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 15px;
+    color: #666;
+}
+
+.form-footer a {
+    color: #7335b7;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border-left: 3px solid #dc3545;
+}
+
+/* Fixed invalid feedback positioning */
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 15px;
+    display: none;
+}
+
+input:invalid:focus + .invalid-feedback {
+    display: block;
+}
+
+/* Fixed form structure for better spacing */
+.validate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+    .auth-container {
+        padding: 25px 15px;
+    }
+    
+    .auth-container h2 {
+        font-size: 24px;
+    }
+    
+    .input-group input, 
+    .input-group select {
+        padding: 10px 15px 10px 40px;
+        font-size: 14px;
+    }
+    
+    .input-group i {
+        bottom: 12px;
+        font-size: 16px;
+    }
+    
+    .social-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .auth-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
+
+/* Animation for form transitions */
+.slide-in {
+    animation: slideIn 0.35s forwards;
+    display: block !important; /* Ensure visibility during animation */
+}
+
+.slide-out {
+    animation: slideOut 0.35s forwards;
+    position: absolute; /* Remove from flow during animation */
+    width: 100%;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Improved spinner for loading state */
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 0.15em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border .75s linear infinite;
+}
+
+.spinner-border.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+
+.d-none {
+    display: none !important;
+}

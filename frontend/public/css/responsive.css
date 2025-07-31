@@ -1,0 +1,830 @@
+@media (max-width: 1300px) {
+  .footer_container {
+    border-radius: 250px 0 0 0;
+  }
+}
+
+/* Tablet Landscape */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  
+  .detail-box h1 {
+    font-size: 2.5rem;
+  }
+  
+  .service_section .box {
+    height: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero_area {
+    height: auto;
+  }
+
+  .quote_btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .custom_nav-container .navbar-nav {
+    margin: 0;
+    margin-left: auto;
+    align-items: center;
+    padding-top: 15px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .custom_nav-container .navbar-nav .nav-item .nav-link {
+    padding: 12px 25px;
+    margin: 5px 0;
+    display: block;
+  }
+
+  .slider_section {
+    padding: 75px 0;
+  }
+  
+  .slider_section .detail-box {
+    margin-top: 45px;
+    text-align: center;
+  }
+
+  .contact_section .img-box {
+    margin-top: 45px;
+  }
+
+  .info_section .row>div:nth-child(1) {
+    margin-bottom: 25px;
+  }
+
+  .info_section .row>div:nth-child(2) {
+    margin-bottom: 25px;
+  }
+  
+  /* Modal improvements for tablets */
+  .modal-dialog {
+    max-width: 90%;
+    margin: 20px auto;
+  }
+  
+  /* Form improvements for tablets */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-with-icon .form-control {
+    padding-left: 45px; /* More space for icon */
+  }
+  
+  /* Map container responsive adjustments */
+  .map-container {
+    height: 400px;
+  }
+  
+  /* Request panel improvements for tablets */
+  .request-panel {
+    width: 250px;
+  }
+
+  /* Mobile navigation enhancements */
+  .nav-container {
+    position: relative;
+  }
+  
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background-color: #7335b7;
+    z-index: 1050;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-collapse.show {
+    left: 0;
+  }
+  
+  /* Backdrop when menu is open */
+  .menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    display: none;
+  }
+  
+  .menu-backdrop.show {
+    display: block;
+  }
+
+  /* Enhanced hamburger menu */
+  .custom_nav-container .navbar-toggler {
+    padding: 10px;
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: none;
+    background-color: transparent;
+  }
+
+  .custom_nav-container .navbar-toggler span {
+    height: 3px;
+    width: 25px;
+    transition: all 0.3s ease;
+  }
+
+  .custom_nav-container .navbar-toggler span::before,
+  .custom_nav-container .navbar-toggler span::after {
+    height: 3px;
+    width: 25px;
+    transition: all 0.3s ease;
+  }
+
+  /* Close button inside mobile menu */
+  .mobile-menu-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Mobile menu header */
+  .mobile-menu-header {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+  }
+  
+  .mobile-menu-header .navbar-brand {
+    margin-bottom: 0;
+    margin-right: auto;
+  }
+
+  /* Style the stacked navigation */
+  .navbar-nav {
+    margin-top: 20px !important;
+    width: 100%;
+  }
+
+  .navbar-nav .nav-item {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .navbar-nav .nav-item .nav-link {
+    color: white;
+    padding: 12px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-nav .nav-item .nav-link:active {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  .navbar-nav .nav-item.active .nav-link {
+    background-color: rgba(255,255,255,0.2);
+    font-weight: bold;
+  }
+  
+  /* Add icons to navigation */
+  .nav-item .nav-link i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero_area {
+    border-radius: 0 0 250px 0;
+  }
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .navbar-collapse {
+    margin-top: 15px;
+  }
+
+  .slider_section .detail-box {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .slider_section .img-box {
+    margin-bottom: 20px;
+  }
+
+  .about_section {
+    border-radius: 150px 0 150px 0;
+    text-align: center;
+  }
+
+  .about_section .img-box {
+    margin-top: 45px;
+  }
+  
+  .service_section .box {
+    margin-bottom: 25px;
+  }
+  
+  .client_section .box {
+    margin-bottom: 25px;
+  }
+  
+  .btn-box {
+    justify-content: center;
+    display: flex;
+  }
+
+  .contact_section .row {
+    flex-direction: column-reverse;
+  }
+  
+  .contact_section form {
+    margin-top: 25px;
+  }
+
+  .contact_section .map_container {
+    margin-left: 0;
+    margin-bottom: 25px;
+    height: 350px;
+  }
+
+  .info_section .row>div:nth-child(3) {
+    margin-bottom: 25px;
+  }
+
+  .info_section .row>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info_section .info_links {
+    align-items: center;
+  }
+
+  .info_section form input {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .footer_container {
+    border-radius: 150px 0 0 0;
+  }
+  
+  /* Form improvements on mobile */
+  .form-group label {
+    font-size: 14px;
+  }
+  
+  .input-with-icon i {
+    left: 12px;
+  }
+  
+  /* Modal improvements for mobile */
+  .modal-dialog {
+    margin: 10px;
+    max-width: calc(100% - 20px);
+  }
+  
+  .modal-body {
+    padding: 15px;
+  }
+  
+  .modal-header {
+    padding: 10px 15px;
+  }
+  
+  .modal-footer {
+    padding: 10px 15px;
+  }
+  
+  /* Service map components */
+  .map-container {
+    height: 350px;
+    margin-bottom: 20px;
+  }
+  
+  .request-panel {
+    width: 100%;
+    position: static;
+    margin-top: 20px;
+    max-height: none;
+    box-shadow: none;
+  }
+  
+  #createRequestBtn {
+    position: static;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* Profile page improvements */
+  .profile-container {
+    padding: 20px 15px;
+  }
+  
+  /* Location picker related */
+  #locationPickerMap {
+    height: 300px;
+  }
+
+  /* Optimize touch targets */
+  a, button, .btn, .nav-link, select, 
+  input[type="radio"] + label,
+  input[type="checkbox"] + label {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 15px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Better spacing between clickable elements */
+  .nav-item, .btn, .form-group, .dropdown-item {
+    margin-bottom: 8px;
+  }
+
+  /* Larger form controls */
+  .form-control {
+    height: 48px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Prevent awkward touch scrolling */
+  .modal-body {
+    -webkit-overflow-scrolling: touch;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  /* Floating action button for primary actions */
+  .fab-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    background-color: #7335b7;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.2s ease;
+  }
+  
+  .fab-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  /* Ensure dropdowns are touch-friendly */
+  .dropdown-menu {
+    min-width: 200px;
+  }
+  
+  .dropdown-item {
+    padding: 12px 20px;
+  }
+  
+  /* Bottom sheet modal for mobile */
+  .modal-bottom-sheet .modal-dialog {
+    position: fixed;
+    margin: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .modal-bottom-sheet .modal-content {
+    border-radius: 12px 12px 0 0;
+    border: none;
+  }
+  
+  .modal-bottom-sheet .modal-header {
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* Bottom navigation */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  
+  .bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    color: #555;
+    text-decoration: none;
+  }
+  
+  .bottom-nav-item.active {
+    color: #7335b7;
+  }
+  
+  .bottom-nav-item i {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  
+  .bottom-nav-item span {
+    font-size: 12px;
+  }
+  
+  /* Add padding to content so it's not hidden behind bottom nav */
+  body.has-bottom-nav {
+    padding-bottom: 60px;
+  }
+  
+  /* Swipe gestures for cards and list items */
+  .swipeable {
+    position: relative;
+    touch-action: pan-y;
+  }
+  
+  .swipeable .swipe-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    transform: translateX(100%);
+    transition: transform 0.2s ease;
+  }
+  
+  .swipeable .swipe-action {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  .swipeable .swipe-action.delete {
+    background-color: #dc3545;
+  }
+  
+  .swipeable .swipe-action.edit {
+    background-color: #7335b7;
+  }
+}
+
+/* Mobile landscape */
+@media (max-width: 576px) {
+  h1 {
+    font-size: 28px !important;
+  }
+  
+  h2 {
+    font-size: 24px !important;
+  }
+  
+  h3 {
+    font-size: 20px !important;
+  }
+  
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .heading_container h2 {
+    margin-bottom: 15px;
+  }
+  
+  .navbar-brand span {
+    font-size: 22px;
+  }
+  
+  .user-info {
+    position: static;
+    margin-bottom: 10px;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .service_section .box {
+    padding: 20px 15px;
+  }
+  
+  .service_section .box .img-box {
+    height: 200px;
+  }
+  
+  .detail-box a {
+    margin-top: 10px;
+  }
+  
+  /* Form control sizing for better mobile experience */
+  .form-control {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    height: 45px;
+  }
+  
+  textarea.form-control {
+    height: auto;
+  }
+  
+  /* Button adjustments */
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  /* Modal additional styles */
+  .modal {
+    padding: 0 !important;
+  }
+  
+  /* Status badges and alerts */
+  .status-badge {
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  /* Adjust grid layouts for mobile */
+  .row {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  
+  [class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  /* Single column cards on mobile */
+  .card-deck {
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .card-deck .card {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  /* Scale down headings */
+  h1 { font-size: 24px !important; line-height: 1.3; }
+  h2 { font-size: 22px !important; line-height: 1.3; }
+  h3 { font-size: 18px !important; line-height: 1.3; }
+  h4 { font-size: 16px !important; line-height: 1.3; }
+  
+  /* Adjust spacing */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  section {
+    padding: 30px 0;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Handle tables on mobile */
+  table.responsive {
+    border: 0;
+  }
+  
+  table.responsive thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table.responsive tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  table.responsive td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 14px;
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+  }
+  
+  table.responsive td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .slider_section {
+    padding: 55px 0;
+  }
+  
+  .service_section,
+  .about_section,
+  .case_section,
+  .client_section,
+  .contact_section {
+    padding: 45px 0;
+  }
+  
+  .heading_container h2 {
+    font-size: 22px !important;
+  }
+  
+  /* Stack buttons vertically */
+  .modal-footer {
+    flex-direction: column;
+  }
+  
+  .modal-footer .btn {
+    margin-left: 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  /* Make dropdown menus more touch-friendly */
+  .dropdown-item {
+    padding: 10px 15px;
+  }
+  
+  /* Improve form group spacing */
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  /* Increase tap target size */
+  .nav-link, 
+  .btn,
+  .dropdown-toggle,
+  input[type="checkbox"] + label,
+  input[type="radio"] + label {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .info_section h4 {
+    font-size: 18px;
+  }
+  
+  .navbar-brand span {
+    font-size: 20px;
+  }
+  
+  .quote_btn {
+    padding: 7px 15px;
+    font-size: 14px;
+  }
+  
+  /* Reduce modal padding further */
+  .modal-body,
+  .modal-header,
+  .modal-footer {
+    padding: 10px;
+  }
+  
+  /* Smaller form labels */
+  .form-group label {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+}
+
+/* Fix for iOS input zooming */
+@supports (-webkit-touch-callout: none) {
+  input, 
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  
+  .form-control {
+    font-size: 16px !important;
+  }
+}
+
+/* Orientation-specific styles */
+@media (orientation: landscape) and (max-height: 500px) {
+  .modal {
+    overflow-y: auto;
+  }
+  
+  .modal-dialog {
+    margin: 10px auto;
+  }
+  
+  .slider_section {
+    padding: 40px 0;
+  }
+}
+
+/* Fix for iPhone safe areas */
+@supports (padding-bottom: constant(safe-area-inset-bottom)) {
+  .bottom-nav {
+    padding-bottom: constant(safe-area-inset-bottom);
+  }
+  
+  body.has-bottom-nav {
+    padding-bottom: calc(60px + constant(safe-area-inset-bottom));
+  }
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  body.has-bottom-nav {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Remove transitions for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

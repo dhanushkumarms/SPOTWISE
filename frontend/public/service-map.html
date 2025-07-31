@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpotWise - Service Map</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/map-styles.css">
+</head>
+<body>
+    <!-- Header section -->
+    <header class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" href="index.html">
+                    <span>SpotWise</span>
+                </a>
+                <div class="user-info">
+                    <span id="userName">Loading...</span>
+                    <span id="userStatus" class="status-indicator"></span>
+                </div>
+                <!-- Add Request Button (visible only for seekers) -->
+                <button id="createRequestBtn" class="btn btn-primary" onclick="openRequestModal()">
+                    Create Request
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Map section -->
+    <div class="map-container">
+        <div id="serviceMap" class="service-map"></div>
+        
+        <!-- Service request panel -->
+        <div class="request-panel" id="requestPanel">
+            <h3>Active Requests</h3>
+            <div class="request-list" id="requestList">
+                <!-- Requests will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Request Modal -->
+    <div class="modal fade" id="requestModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Service Request</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="serviceRequestForm">
+                        <div class="form-group">
+                            <label for="serviceCategory">Service Category</label>
+                            <select class="form-control" id="serviceCategory" required aria-label="Service Category">
+                                <option value="">Select a service...</option>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="carpentry">Carpentry</option>
+                                <option value="cleaning">Cleaning</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a service category</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">
+                              Description
+                              <span class="required-indicator">*</span>
+                            </label>
+                            <textarea class="form-control" id="description" rows="3" required aria-describedby="descriptionHelp"></textarea>
+                            <small id="descriptionHelp" class="form-text text-muted">Please describe the service you need</small>
+                            <div class="invalid-feedback">Please provide a description of the service needed</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNumber">
+                              Contact Number
+                              <span class="required-indicator">*</span>
+                            </label>
+                            <div class="input-with-icon">
+                                <input type="tel" class="form-control" id="contactNumber" pattern="[0-9]{10}" required aria-describedby="phoneHelp">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <small id="phoneHelp" class="form-text text-muted">Enter a 10-digit phone number</small>
+                            <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Request Valid for (minutes)</label>
+                            <select class="form-control" id="duration" min="30" max="180" required aria-label="Duration">
+                                <option value="30">30 minutes</option>
+                                <option value="60" selected>1 hour</option>
+                                <option value="120">2 hours</option>
+                                <option value="180">3 hours</option>
+                            </select>
+                            <div class="invalid-feedback">Please select how long your request should be active</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="additionalDetails">Additional Details (Optional)</label>
+                            <textarea class="form-control" id="additionalDetails" rows="2" aria-label="Additional Details"></textarea>
+                        </div>
+                        <div class="location-preview">
+                            <p>Service Location: <span id="selectedLocation">Using current location</span></p>
+                            <button type="button" class="btn btn-secondary" onclick="pickLocation()" aria-label="Change Location">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> Change Location
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="submitRequest()" id="submitRequestBtn">
+                        <span class="btn-text">Submit Request</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Picker Modal -->
+    <div class="modal fade" id="locationPickerModal" tabindex="-1" role="dialog" aria-labelledby="locationPickerModalTitle">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Pick Service Location</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="locationPickerMap" style="height: 400px;"></div>
+                    <div class="location-search-container" style="margin-top: 10px;">
+                        <input type="text" id="locationSearchInput" class="form-control" placeholder="Search for a location...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" id="detectLocationBtn">
+                        <i class="fa fa-location-arrow"></i> Use My Location
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmLocation()">Confirm Location</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize maps when Google Maps API is loaded
+        function initMapsCallback() {
+            if (window.requestService) {
+                window.requestService.init();
+            }
+        }
+
+        // Initialize when document is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Only initialize if Google Maps is already loaded
+            if (window.google && google.maps) {
+                initMapsCallback();
+            }
+            // Otherwise wait for the callback from Google Maps API
+        });
+    </script>
+
+    <!-- Google Maps API with callback -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMapsCallback" async defer></script>
+</body>
+</html>

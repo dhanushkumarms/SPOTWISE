@@ -1,0 +1,3 @@
+[build]
+  publish = "frontend/public"
+  command = ""  // No build command is needed for a plain static site

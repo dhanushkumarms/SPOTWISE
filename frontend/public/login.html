@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/location-service.js"></script>
+    <title>SPOT WISE| Login & Registration</title>
+    <script>
+        const API_BASE_URL = 'https://backend-green-zeta-69.vercel.app';
+            
+    </script>
+</head>
+
+<body>
+    <div class="auth-container">
+        <!-- Login Form -->
+        <div id="login-form" class="slide-in">
+            <h2>Welcome to SpotWise</h2>
+            
+            <div class="toggle-form">
+                <button type="button" class="active" onclick="login()">Sign In</button>
+                <button type="button" onclick="register()">Sign Up</button>
+            </div>
+            
+            <form id="loginForm" class="validate-form">
+                <div class="input-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" class="animate-focus" placeholder="Enter your email" required 
+                           aria-label="Email address" aria-required="true">
+                    <i class='bx bx-envelope'></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" class="animate-focus" placeholder="Enter your password" required
+                           aria-label="Password" aria-required="true">
+                    <i class='bx bx-lock-alt'></i>
+                </div>
+                
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox" id="remember">
+                        Remember me
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="auth-btn" id="loginButton">
+                    <span class="btn-text">Sign In</span>
+                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+            </form>
+            
+            <div class="form-footer">
+                Don't have an account? <a href="#" onclick="register()">Sign Up</a>
+            </div>
+        </div>
+        
+        <!-- Registration Form -->
+        <div id="signup-form" class="slide-out" style="display: none;">
+            <h2>Create Account</h2>
+            
+            <div class="toggle-form">
+                <button type="button" onclick="login()">Sign In</button>
+                <button type="button" class="active" onclick="register()">Sign Up</button>
+            </div>
+            
+            <form id="registerForm" class="validate-form">
+                <div class="input-group">
+                    <label for="signup-name">Username</label>
+                    <input type="text" id="signup-name" name="userName" class="animate-focus" placeholder="Enter your username" required
+                           aria-label="Username" aria-required="true">
+                    <i class='bx bx-user'></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" class="animate-focus" placeholder="Enter your email" required
+                           aria-label="Email address" aria-required="true">
+                    <i class='bx bx-envelope'></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" class="animate-focus" placeholder="Create a password" required
+                           aria-label="Password" aria-required="true" minlength="8">
+                    <i class='bx bx-lock-alt'></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="user-type">User Type</label>
+                    <select id="user-type" name="role" class="animate-focus" required aria-label="Select user type" aria-required="true">
+                        <option value="" disabled>Select user type</option>
+                        <option value="seeker" selected>Seeker</option>
+                        <option value="provider">Provider</option>
+                    </select>
+                    <i class='bx bx-user-pin'></i>
+                </div>
+                
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox" id="register-check" required>
+                        I agree to the Terms
+                    </label>
+                    <a href="terms.html">Terms & Conditions</a>
+                </div>
+                
+                <button type="submit" class="auth-btn" id="registerButton">
+                    <span class="btn-text">Sign Up</span>
+                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+            </form>
+            
+            <div class="form-footer">
+                Already have an account? <a href="#" onclick="login()">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialization to show login form by default
+        document.addEventListener('DOMContentLoaded', function() {
+            login();
+        });
+
+        var x = document.getElementById("login-form");
+        var y = document.getElementById("signup-form");
+
+        function login() {
+            // First handle removing classes from the signup form
+            y.classList.remove("slide-in");
+            y.classList.add("slide-out");
+            
+            // After a short delay, update display and add classes to login form
+            setTimeout(() => {
+                y.style.display = "none";
+                x.style.display = "block";
+                x.classList.add("slide-in");
+                x.classList.remove("slide-out");
+                
+                // Update active state of toggle buttons
+                document.querySelectorAll('.toggle-form button').forEach((btn, index) => {
+                    if (index === 0) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                });
+            }, 100);
+        }
+
+        function register() {
+            // First handle removing classes from the login form
+            x.classList.remove("slide-in");
+            x.classList.add("slide-out");
+            
+            // After a short delay, update display and add classes to signup form
+            setTimeout(() => {
+                x.style.display = "none";
+                y.style.display = "block";
+                y.classList.add("slide-in");
+                y.classList.remove("slide-out");
+                
+                // Update active state of toggle buttons
+                document.querySelectorAll('.toggle-form button').forEach((btn, index) => {
+                    if (index === 1) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                });
+            }, 100);
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const email = e.target.email.value;
+            const password = e.target.password.value;
+
+            try {
+                // Show loading state
+                const loginBtn = document.getElementById('loginButton');
+                loginBtn.disabled = true;
+                loginBtn.querySelector('.btn-text').style.opacity = '0.7';
+                loginBtn.querySelector('.spinner-border').classList.remove('d-none');
+
+                // Use the full backend URL instead of a relative path
+                const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                // Check if response is ok and contains JSON content
+                if (res.headers.get('content-type')?.includes('application/json')) {
+                    const data = await res.json();
+                    
+                    if (res.ok) {
+                        // Save token and user role for authorization
+                        localStorage.setItem('token', data.token);
+                        
+                        // Decode the JWT to get user info (without a library)
+                        const payload = JSON.parse(atob(data.token.split('.')[1]));
+                        localStorage.setItem('userRole', payload.user.role);
+                        localStorage.setItem('userId', payload.user.id);
+                        
+                        // Redirect to index.html (fixed path - removed leading slash)
+                        window.location.href = 'index.html';
+                    } else {
+                        // Display error message from JSON response
+                        showLoginError(data.message || 'Login failed. Please check your credentials.');
+                    }
+                } else {
+                    // Handle non-JSON response
+                    const text = await res.text();
+                    console.error('Non-JSON response:', text);
+                    showLoginError('Server returned an unexpected response. Please try again later.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showLoginError('Connection error. Please try again later.');
+            } finally {
+                // Reset loading state
+                const loginBtn = document.getElementById('loginButton');
+                loginBtn.disabled = false;
+                loginBtn.querySelector('.btn-text').style.opacity = '1';
+                loginBtn.querySelector('.spinner-border').classList.add('d-none');
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const userName = e.target.userName.value;
+            const email = e.target.email.value;
+            const password = e.target.password.value;
+            const role = e.target.role.value;
+
+            // Basic validation
+            if (password.length < 6) {
+                showRegisterError('Password must be at least 6 characters long');
+                return;
+            }
+
+            try {
+                // Use the full backend URL instead of a relative path
+                const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userName, email, password, role })
+                });
+
+                // Check if response is ok and contains JSON content
+                if (res.headers.get('content-type')?.includes('application/json')) {
+                    const data = await res.json();
+                    
+                    if (res.ok) {
+                        // Store token if available
+                        if (data.token) {
+                            localStorage.setItem('token', data.token);
+                            
+                            // Decode the JWT to get user info
+                            const payload = JSON.parse(atob(data.token.split('.')[1]));
+                            localStorage.setItem('userRole', payload.user.role);
+                            localStorage.setItem('userId', payload.user.id);
+                            
+                            // Redirect to index.html for both user types
+                            window.location.href = 'index.html';
+                        } else {
+                            // Registration successful but no auto-login
+                            showSuccessMessage('Registration successful! Please login with your new account.');
+                            login(); // Switch to login form
+                        }
+                    } else {
+                        showRegisterError(data.message || 'Registration failed. Please try again.');
+                    }
+                } else {
+                    // Handle non-JSON response
+                    const text = await res.text();
+                    console.error('Non-JSON response:', text);
+                    showRegisterError('Server returned an unexpected response. Please try again later.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showRegisterError('Connection error. Please try again later.');
+            }
+        });
+
+        // Helper functions for displaying messages
+        function showLoginError(message) {
+            // Remove any existing error messages
+            const existingError = document.querySelector('#login-form .error-message');
+            if (existingError) existingError.remove();
+            
+            // Create new error message
+            const errorElement = document.createElement('div');
+            errorElement.className = 'error-message';
+            errorElement.textContent = message;
+            
+            // Insert error before the button
+            const loginButton = document.getElementById('loginButton');
+            loginButton.parentNode.insertBefore(errorElement, loginButton);
+        }
+
+        function showRegisterError(message) {
+            // Remove any existing error messages
+            const existingError = document.querySelector('#signup-form .error-message');
+            if (existingError) existingError.remove();
+            
+            // Create new error message
+            const errorElement = document.createElement('div');
+            errorElement.className = 'error-message';
+            errorElement.textContent = message;
+            
+            // Insert error before the button
+            const registerButton = document.getElementById('registerButton');
+            registerButton.parentNode.insertBefore(errorElement, registerButton);
+        }
+
+        function showSuccessMessage(message) {
+            alert(message);
+        }
+    </script>
+</body>
+
+</html>

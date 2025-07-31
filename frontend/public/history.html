@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="SpotWise, History, Service, Requests" />
+  <meta name="description" content="View your SpotWise service history." />
+  <meta name="author" content="SpotWise" />
+
+  <title>SpotWise - Service History</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- Font Awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- Responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    .history-section {
+      padding: 80px 0;
+    }
+    .history-container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+    .history-table {
+      width: 100%;
+      margin-top: 20px;
+    }
+    .history-table th {
+      background-color: #7335b7;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+    .history-table td {
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .history-table tr:hover {
+      background-color: #f5f5f5;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .status-pending {
+      background-color: #ffeeba;
+      color: #856404;
+    }
+    .status-accepted {
+      background-color: #bee5eb;
+      color: #0c5460;
+    }
+    .status-in-progress {
+      background-color: #ffeeba;
+      color: #856404;
+    }
+    .status-completed {
+      background-color: #c3e6cb;
+      color: #155724;
+    }
+    .status-cancelled {
+      background-color: #f5c6cb;
+      color: #721c24;
+    }
+    .status-expired {
+      background-color: #e0e0e0;
+      color: #555555;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px 0;
+    }
+    .empty-state i {
+      font-size: 60px;
+      color: #e0e0e0;
+    }
+    .empty-state p {
+      margin-top: 15px;
+      color: #888;
+      font-size: 18px;
+    }
+    .btn-details {
+      background-color: #7335b7;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-details:hover {
+      background-color: #5e2b94;
+    }
+    .loading {
+      position: relative;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      margin: -15px 0 0 -15px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: #7335b7;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .history-details {
+      margin-top: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      padding: 20px;
+      display: none;
+    }
+    .history-timeline {
+      position: relative;
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 10px;
+      width: 2px;
+      background-color: #e0e0e0;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #7335b7;
+    }
+    .timeline-status {
+      font-weight: bold;
+      color: #7335b7;
+    }
+    .timeline-date {
+      color: #888;
+      font-size: 0.9rem;
+    }
+    .filter-section {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .filter-btn {
+      background-color: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      padding: 5px 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .filter-btn.active {
+      background-color: #7335b7;
+      color: white;
+      border-color: #7335b7;
+    }
+  </style>
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- Header section starts -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <span>SpotWise</span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+              </li>
+            </ul>
+            <div class="quote_btn-container">
+              <!-- Login button - visible when user is not logged in -->
+              <a href="login.html" class="quote_btn" id="loginBtn">
+                Login
+              </a>
+              
+              <!-- Profile dropdown - visible when user is logged in -->
+              <div class="dropdown" id="profileDropdown" style="display: none;">
+                <a class="dropdown-toggle profile-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="profile.html"><i class="fa fa-user" aria-hidden="true"></i> My Profile</a>
+                  <a class="dropdown-item active" href="history.html"><i class="fa fa-history" aria-hidden="true"></i> History</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" id="logoutBtn"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- End header section -->
+  </div>
+
+  <!-- History section -->
+  <section class="history-section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="heading_container">
+            <h2>Service History</h2>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mt-4">
+        <div class="col-md-10 mx-auto">
+          <div class="history-container">
+            <div id="alertContainer"></div>
+            
+            <div class="filter-section">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="pending">Pending</button>
+              <button class="filter-btn" data-filter="accepted">Accepted</button>
+              <button class="filter-btn" data-filter="in-progress">In Progress</button>
+              <button class="filter-btn" data-filter="completed">Completed</button>
+              <button class="filter-btn" data-filter="cancelled">Cancelled</button>
+            </div>
+            
+            <div class="table-responsive">
+              <table class="history-table" id="historyTable">
+                <thead>
+                  <tr>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Provider/Client</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                  <!-- Table content will be dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            
+            <!-- Empty state - shown when no history is available -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+              <i class="fa fa-history" aria-hidden="true"></i>
+              <p>You don't have any service history yet.</p>
+            </div>
+            
+            <!-- Service request details section -->
+            <div class="history-details" id="historyDetails">
+              <h4>Service Request Details</h4>
+              <div id="detailsContent">
+                <!-- Details will be dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End history section -->
+
+  <div class="footer_container">
+    <!-- Info section -->
+    <section class="info_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <div class="info_detail">
+              <h4>SpotWise</h4>
+              <p>SpotWise connects you with local service providers. Contact us for all your service needs.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-2 mx-auto">
+            <div class="info_link_box">
+              <h4>Links</h4>
+              <div class="info_links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="service.html">Services</a>
+                <a href="contact.html">Contact Us</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h4>Subscribe</h4>
+            <form action="#">
+              <input type="text" placeholder="Enter email" />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-0 ml-auto">
+            <div class="info_contact">
+              <h4>Contact Information</h4>
+              <div class="contact_link_box">
+                <a href="">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <span>SpotWise HQ, San Francisco, CA</span>
+                </a>
+                <a href="tel:+01 123 456 7890">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  <span>Call +01 123 456 7890</span>
+                </a>
+                <a href="mailto:contact@spotwise.com">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <span>contact@spotwise.com</span>
+                </a>
+              </div>
+            </div>
+            <div class="info_social">
+              <a href="https://www.facebook.com/SpotWise">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="https://twitter.com/SpotWise">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.linkedin.com/company/spotwise">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.instagram.com/SpotWise">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End info section -->
+
+    <!-- Footer section -->
+    <footer class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved by SpotWise.
+        </p>
+      </div>
+    </footer>
+    <!-- End footer section -->
+  </div>
+
+  <!-- jQuery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- Bootstrap JS -->
+  <script src="js/bootstrap.js"></script>
+  <script src="js/custom.js"></script>
+  <!-- Authentication script -->
+  <script src="js/auth.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check authentication
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      // Fetch service history
+      fetchServiceHistory();
+      
+      // Set up filter buttons
+      setupFilters();
+    });
+    
+    // Current filter
+    let currentFilter = 'all';
+    
+    // Setup filter buttons
+    function setupFilters() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          this.classList.add('active');
+          
+          // Set current filter
+          currentFilter = this.dataset.filter;
+          
+          // Apply filter
+          applyFilter();
+        });
+      });
+    }
+    
+    // Apply current filter to table
+    function applyFilter() {
+      const rows = document.querySelectorAll('#historyTableBody tr');
+      
+      if (rows.length === 0) return;
+      
+      let visibleCount = 0;
+      
+      rows.forEach(row => {
+        const status = row.getAttribute('data-status');
+        
+        if (currentFilter === 'all' || status === currentFilter) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      
+      // Show empty state if no visible rows
+      if (visibleCount === 0) {
+        document.getElementById('historyTable').style.display = 'none';
+        document.getElementById('emptyState').style.display = 'block';
+        document.getElementById('emptyState').querySelector('p').textContent = 
+          `You don't have any ${currentFilter !== 'all' ? currentFilter : ''} service requests.`;
+      } else {
+        document.getElementById('historyTable').style.display = '';
+        document.getElementById('emptyState').style.display = 'none';
+      }
+    }
+    
+    // Fetch service history from backend
+    async function fetchServiceHistory() {
+      try {
+        const historyContainer = document.querySelector('.history-container');
+        historyContainer.classList.add('loading');
+        
+        const response = await fetch('http://localhost:3000/api/service-requests/history', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch history: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Store role for reference
+        const userRole = data.role;
+        localStorage.setItem('userRole', userRole);
+        
+        // Display history data
+        displayHistory(data.history, userRole);
+      } catch (error) {
+        console.error('Error fetching history:', error);
+        showAlert('error', 'Failed to load service history. Please try again later.');
+        
+        // Show empty state
+        document.getElementById('historyTable').style.display = 'none';
+        document.getElementById('emptyState').style.display = 'block';
+      } finally {
+        document.querySelector('.history-container').classList.remove('loading');
+      }
+    }
+    
+    // Display history data in table
+    function displayHistory(history, userRole) {
+      const tableBody = document.getElementById('historyTableBody');
+      tableBody.innerHTML = '';
+      
+      if (!history || history.length === 0) {
+        // Show empty state
+        document.getElementById('historyTable').style.display = 'none';
+        document.getElementById('emptyState').style.display = 'block';
+        return;
+      }
+      
+      document.getElementById('historyTable').style.display = '';
+      document.getElementById('emptyState').style.display = 'none';
+      
+      history.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.setAttribute('data-status', item.status);
+        row.setAttribute('data-request-id', index); // Using index as a simple ID
+        
+        // Create service column
+        const serviceCell = document.createElement('td');
+        serviceCell.innerHTML = `<strong>${item.category}</strong><br><span class="text-muted">${truncateText(item.description, 50)}</span>`;
+        
+        // Create date column
+        const dateCell = document.createElement('td');
+        dateCell.textContent = formatDate(item.createdAt);
+        
+        // Create status column
+        const statusCell = document.createElement('td');
+        statusCell.innerHTML = `<span class="status-badge status-${item.status}">${formatStatus(item.status)}</span>`;
+        
+        // Create provider/client column
+        const contactCell = document.createElement('td');
+        if (userRole === 'seeker' && item.provider) {
+          contactCell.textContent = item.provider.name || 'Unknown Provider';
+        } else if (userRole === 'provider' && item.seeker) {
+          contactCell.textContent = item.seeker.name || 'Unknown Client';
+        } else {
+          contactCell.textContent = 'Not assigned';
+        }
+        
+        // Create actions column
+        const actionsCell = document.createElement('td');
+        const detailsButton = document.createElement('button');
+        detailsButton.className = 'btn-details';
+        detailsButton.innerHTML = '<i class="fa fa-info-circle"></i> Details';
+        detailsButton.addEventListener('click', () => showDetails(item, userRole));
+        actionsCell.appendChild(detailsButton);
+        
+        // Append cells to row
+        row.appendChild(serviceCell);
+        row.appendChild(dateCell);
+        row.appendChild(statusCell);
+        row.appendChild(contactCell);
+        row.appendChild(actionsCell);
+        
+        // Add row to table body
+        tableBody.appendChild(row);
+      });
+      
+      // Apply initial filter
+      applyFilter();
+    }
+    
+    // Show service request details
+    function showDetails(request, userRole) {
+      const detailsContainer = document.getElementById('historyDetails');
+      const detailsContent = document.getElementById('detailsContent');
+      
+      // Clear previous content
+      detailsContent.innerHTML = '';
+      
+      // Build details content
+      let html = `
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Service:</strong> ${request.category}</p>
+            <p><strong>Description:</strong> ${request.description}</p>
+            <p><strong>Contact:</strong> ${request.contactNumber}</p>
+            <p><strong>Status:</strong> <span class="status-badge status-${request.status}">${formatStatus(request.status)}</span></p>
+            <p><strong>Created:</strong> ${formatDateLong(request.createdAt)}</p>
+      `;
+      
+      if (request.expirationTime) {
+        html += `<p><strong>Expires:</strong> ${formatDateLong(request.expirationTime)}</p>`;
+      }
+      
+      html += `</div>`;
+      
+      // Add second column with provider/client info
+      html += `<div class="col-md-6">`;
+      
+      if (userRole === 'seeker' && request.provider) {
+        html += `
+          <p><strong>Provider:</strong> ${request.provider.name || 'Unknown'}</p>
+          <p><strong>Provider Contact:</strong> ${request.provider.contactNumber || 'N/A'}</p>
+        `;
+      } else if (userRole === 'provider' && request.seeker) {
+        html += `
+          <p><strong>Client:</strong> ${request.seeker.name || 'Unknown'}</p>
+          <p><strong>Client Contact:</strong> ${request.seeker.contactNumber || 'N/A'}</p>
+        `;
+      }
+      
+      // Add location info if available
+      if (request.location && request.location.length === 2) {
+        html += `
+          <p><strong>Location:</strong>
+            <a href="https://www.google.com/maps?q=${request.location[1]},${request.location[0]}" target="_blank">
+              View on Map <i class="fa fa-external-link" aria-hidden="true"></i>
+            </a>
+          </p>
+        `;
+      }
+      
+      html += `</div></div>`;
+      
+      // Add timeline if available
+      if (request.history && request.history.length > 0) {
+        html += `
+          <div class="row mt-3">
+            <div class="col-12">
+              <h5>Status Timeline</h5>
+              <div class="history-timeline">
+        `;
+        
+        // Add initial creation event
+        html += `
+          <div class="timeline-item">
+            <div class="timeline-status">Created</div>
+            <div class="timeline-date">${formatDateLong(request.createdAt)}</div>
+          </div>
+        `;
+        
+        // Add each status change from history
+        request.history.forEach(historyItem => {
+          html += `
+            <div class="timeline-item">
+              <div class="timeline-status">${formatStatus(historyItem.status)}</div>
+              <div class="timeline-date">${formatDateLong(historyItem.timestamp)}</div>
+            </div>
+          `;
+        });
+        
+        html += `</div></div></div>`;
+      }
+      
+      // Set content and show details
+      detailsContent.innerHTML = html;
+      detailsContainer.style.display = 'block';
+      
+      // Scroll to details
+      detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // Format date as "MM/DD/YYYY"
+    function formatDate(dateString) {
+      if (!dateString) return 'N/A';
+      
+      const date = new Date(dateString);
+      return date.toLocaleDateString();
+    }
+    
+    // Format date as "Month DD, YYYY at HH:MM AM/PM"
+    function formatDateLong(dateString) {
+      if (!dateString) return 'N/A';
+      
+      const date = new Date(dateString);
+      return date.toLocaleString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+      });
+    }
+    
+    // Format status text for display
+    function formatStatus(status) {
+      if (!status) return 'Unknown';
+      
+      // Capitalize first letter of each word
+      return status.split('-').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ');
+    }
+    
+    // Truncate long text with ellipsis
+    function truncateText(text, maxLength) {
+      if (!text) return '';
+      
+      if (text.length <= maxLength) return text;
+      
+      return text.substring(0, maxLength) + '...';
+    }
+    
+    // Show alert message
+    function showAlert(type, message) {
+      const alertContainer = document.getElementById('alertContainer');
+      
+      // Create alert element
+      const alertEl = document.createElement('div');
+      
+      // Set appropriate class based on type
+      if (type === 'success') {
+        alertEl.className = 'alert alert-success';
+      } else if (type === 'warning') {
+        alertEl.className = 'alert alert-warning';
+        alertEl.style.backgroundColor = '#fff3cd';
+        alertEl.style.color = '#856404';
+        alertEl.style.borderColor = '#ffeeba';
+      } else {
+        alertEl.className = 'alert alert-danger';
+      }
+      
+      alertEl.textContent = message;
+      
+      // Clear previous alerts
+      alertContainer.innerHTML = '';
+      
+      // Add new alert
+      alertContainer.appendChild(alertEl);
+      
+      // Auto dismiss after 5 seconds
+      setTimeout(() => {
+        alertEl.remove();
+      }, 5000);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="SpotWise, Profile, Service, Providers" />
+  <meta name="description" content="Manage your SpotWise profile." />
+  <meta name="author" content="SpotWise" />
+
+  <title>SpotWise - My Profile</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- Font Awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- Responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    .profile-section {
+      padding: 80px 0;
+    }
+    .profile-container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .skill-checkbox {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+    .profile-btn {
+      background-color: #7335b7; /* Updated to match theme */
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .profile-btn:hover {
+      background-color: #5e2b94; /* Darker version of primary color */
+    }
+    .alert {
+      padding: 10px 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    /* Hide map container initially */
+    #map-container {
+      height: 300px;
+      margin-top: 10px;
+      display: none;
+    }
+    .status-toggle {
+      margin-top: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      border: 1px solid #e0e0e0;
+    }
+    .status-toggle label {
+      margin-bottom: 0;
+      margin-left: 10px;
+    }
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    .status-online {
+      background-color: #28a745;
+    }
+    .status-offline {
+      background-color: #dc3545;
+    }
+    .status-active {
+      background-color: #17a2b8;
+    }
+    .status-in-progress {
+      background-color: #ffc107;
+    }
+    .loading {
+      position: relative;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      margin: -15px 0 0 -15px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: #7335b7;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- Header section starts -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <span>SpotWise</span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+              </li>
+            </ul>
+            <div class="quote_btn-container">
+              <!-- Login button - visible when user is not logged in -->
+              <a href="login.html" class="quote_btn" id="loginBtn">
+                Login
+              </a>
+              
+              <!-- Profile dropdown - visible when user is logged in -->
+              <div class="dropdown" id="profileDropdown" style="display: none;">
+                <a class="dropdown-toggle profile-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="profile.html"><i class="fa fa-user" aria-hidden="true"></i> My Profile</a>
+                  <a class="dropdown-item" href="history.html"><i class="fa fa-history" aria-hidden="true"></i> History</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" id="logoutBtn"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- End header section -->
+  </div>
+
+  <!-- Profile section -->
+  <section class="profile-section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="heading_container">
+            <h2>My Profile</h2>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mt-4">
+        <div class="col-md-8 mx-auto">
+          <div class="profile-container">
+            <div id="alertContainer"></div>
+            
+            <form id="profileForm">
+              <!-- Basic Information -->
+              <div class="form-group">
+                <label for="userName">
+                  Username
+                  <span class="required-indicator">*</span>
+                </label>
+                <input type="text" class="form-control" id="userName" name="userName" required aria-describedby="usernameHelp">
+                <small id="usernameHelp" class="form-text text-muted">This will be visible to other users</small>
+                <div class="invalid-feedback">Please enter a username</div>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" disabled aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">Email address cannot be changed</small>
+              </div>
+              
+              <div class="form-group">
+                <label for="contactNumber">
+                  Contact Number
+                  <span class="required-indicator">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <input type="text" class="form-control" id="contactNumber" name="contactNumber" 
+                         pattern="[0-9]{10}" title="Please enter a 10-digit number" required aria-describedby="phoneHelp">
+                  <i class="fa fa-phone"></i>
+                </div>
+                <small id="phoneHelp" class="form-text text-muted">Enter a 10-digit phone number without spaces or dashes</small>
+                <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
+              </div>
+              
+              <!-- Address Section -->
+              <div class="form-group">
+                <h4>Address</h4>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="street">Street</label>
+                    <input type="text" class="form-control" id="street" name="street" aria-label="Street address">
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" name="city" aria-label="City">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state" name="state" aria-label="State">
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col-md-6">
+                    <label for="postalCode">Postal Code</label>
+                    <input type="text" class="form-control" id="postalCode" name="postalCode" aria-label="Postal code">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" id="country" name="country" aria-label="Country">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Provider-specific fields -->
+              <div id="providerFields" style="display: none;">
+                <div class="form-group">
+                  <h4>Skills</h4>
+                  <div class="skills-container">
+                    <div class="skill-checkbox">
+                      <input type="checkbox" id="plumbing" name="skills" value="Plumbing">
+                      <label for="plumbing">Plumbing</label>
+                    </div>
+                    <div class="skill-checkbox">
+                      <input type="checkbox" id="electrical" name="skills" value="Electrical">
+                      <label for="electrical">Electrical</label>
+                    </div>
+                    <div class="skill-checkbox">
+                      <input type="checkbox" id="carpentry" name="skills" value="Carpentry">
+                      <label for="carpentry">Carpentry</label>
+                    </div>
+                    <div class="skill-checkbox">
+                      <input type="checkbox" id="painting" name="skills" value="Painting">
+                      <label for="painting">Painting</label>
+                    </div>
+                    <div class="skill-checkbox">
+                      <input type="checkbox" id="cleaning" name="skills" value="Cleaning">
+                      <label for="cleaning">Cleaning</label>
+                    </div>
+                    <div class="skill-checkbox">
+                      <input type="checkbox" id="gardening" name="skills" value="Gardening">
+                      <label for="gardening">Gardening</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Provider Status Toggle -->
+                <div class="form-group status-toggle">
+                  <h4>Availability Status</h4>
+                  <div class="d-flex align-items-center">
+                    <span id="statusIndicator" class="status-indicator"></span>
+                    <span id="currentStatus">Loading status...</span>
+                  </div>
+                  <div class="custom-control custom-switch mt-2">
+                    <input type="checkbox" class="custom-control-input" id="statusToggle">
+                    <label class="custom-control-label" for="statusToggle">Toggle availability</label>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <h4>Service Location</h4>
+                  <p>Click on the map to set your service location</p>
+                  <div id="map-container"></div>
+                  <input type="hidden" id="longitude" name="longitude">
+                  <input type="hidden" id="latitude" name="latitude">
+                </div>
+              </div>
+              
+              <div class="form-group text-center mt-4">
+                <button type="submit" class="profile-btn">Update Profile</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End profile section -->
+
+  <div class="footer_container">
+    <!-- Info section -->
+    <section class="info_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <div class="info_detail">
+              <h4>SpotWise</h4>
+              <p>SpotWise connects you with local service providers. Contact us for all your service needs.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-2 mx-auto">
+            <div class="info_link_box">
+              <h4>Links</h4>
+              <div class="info_links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="service.html">Services</a>
+                <a href="contact.html">Contact Us</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h4>Subscribe</h4>
+            <form action="#">
+              <input type="text" placeholder="Enter email" />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-0 ml-auto">
+            <div class="info_contact">
+              <h4>Contact Information</h4>
+              <div class="contact_link_box">
+                <a href="">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <span>SpotWise HQ, San Francisco, CA</span>
+                </a>
+                <a href="tel:+01 123 456 7890">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  <span>Call +01 123 456 7890</span>
+                </a>
+                <a href="mailto:contact@spotwise.com">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <span>contact@spotwise.com</span>
+                </a>
+              </div>
+            </div>
+            <div class="info_social">
+              <a href="https://www.facebook.com/SpotWise">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="https://twitter.com/SpotWise">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.linkedin.com/company/spotwise">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.instagram.com/spotwise">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End info section -->
+
+    <!-- Footer section -->
+    <footer class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved by SpotWise.
+        </p>
+      </div>
+    </footer>
+    <!-- End footer section -->
+  </div>
+
+  <!-- jQuery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- Bootstrap JS -->
+  <script src="js/bootstrap.js"></script>
+  <script src="js/custom.js"></script>
+  <!-- Authentication script -->
+  <script src="js/auth.js"></script>
+  
+  <!-- Helper scripts -->
+  <script src="js/location-service.js"></script>
+  <script src="js/map-service.js"></script>
+
+  <!-- Define initMap before Google Maps loads -->
+  <script>
+    // Variables for marker
+    let marker;
+    let map;
+    let isSubmitting = false;
+    
+    // Initialize map
+    function initMap() {
+      const mapContainer = document.getElementById("map-container");
+      if (!mapContainer) {
+        console.error("Map container element not found");
+        return;
+      }
+      
+      // Show map container
+      mapContainer.style.display = 'block';
+      
+      // Default location (Bangalore, India)
+      const defaultLocation = { lat: 12.9716, lng: 77.5946 };
+      
+      // Initialize location service if available
+      if (window.locationService) {
+        window.locationService.init();
+      }
+      
+      // Initialize map
+      if (window.mapService) {
+        window.mapService.initMap("map-container").then(mapInstance => {
+          map = mapInstance;
+          
+          // Add click listener to map
+          map.addListener("click", (event) => {
+            placeMarker(event.latLng);
+          });
+          
+          // Add search functionality
+          addLocationSearch();
+          
+          // Try to get user's current location
+          getUserLocation();
+        }).catch(error => {
+          console.error("Error initializing map:", error);
+          createFallbackMap(defaultLocation);
+        });
+      } else {
+        // Fallback if mapService is not available
+        createFallbackMap(defaultLocation);
+      }
+    }
+    
+    // Create fallback map if map service is unavailable
+    function createFallbackMap(defaultLocation) {
+      const mapContainer = document.getElementById("map-container");
+      
+      map = new google.maps.Map(mapContainer, {
+        center: defaultLocation,
+        zoom: 12,
+      });
+      
+      // Add click listener to map
+      map.addListener("click", (event) => {
+        placeMarker(event.latLng);
+      });
+      
+      // Try to get user's current location
+      getUserLocation();
+    }
+    
+    // Get user's current location
+    function getUserLocation() {
+      if (window.locationService) {
+        window.locationService.getCurrentLocation({ requestPermission: true, highAccuracy: true })
+          .then(position => {
+            map.setCenter(position);
+            placeMarker(position);
+            
+            // Show success message
+            showAlert('success', 'Your location was detected successfully!');
+          })
+          .catch(error => {
+            console.warn("Error getting location:", error);
+            showAlert('warning', 'Could not detect your location automatically. Please click on the map to set your service location.');
+            
+            // Try using stored location if available
+            const storedLocation = localStorage.getItem('lastUserLocation');
+            if (storedLocation) {
+              try {
+                const position = JSON.parse(storedLocation);
+                map.setCenter(position);
+                placeMarker(position);
+                showAlert('info', 'Using your previously saved location. Click on the map to change it.');
+              } catch (e) {
+                console.error('Error parsing stored location:', e);
+                // Fallback to browser's geolocation as a last resort
+                fallbackGetLocation();
+              }
+            } else {
+              // Fallback to browser's geolocation
+              fallbackGetLocation();
+            }
+          });
+      } else {
+        fallbackGetLocation();
+      }
+    }
+    
+    // Fallback geolocation method using browser API
+    function fallbackGetLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            map.setCenter(pos);
+            placeMarker(new google.maps.LatLng(pos.lat, pos.lng));
+            
+            // Store this location
+            localStorage.setItem('lastUserLocation', JSON.stringify(pos));
+            
+            // Show success message
+            showAlert('success', 'Your location was detected successfully!');
+          },
+          (error) => {
+            console.warn("Geolocation error:", error);
+            showAlert('warning', 'Could not access your location. Please click on the map to set your service location.');
+            
+            // Use default center as a last resort
+            const defaultLocation = { lat: 12.9716, lng: 77.5946 };
+            map.setCenter(defaultLocation);
+          }
+        );
+      } else {
+        showAlert('warning', 'Geolocation is not supported by your browser. Please click on the map to set your service location.');
+      }
+    }
+    
+    // Place marker on map
+    function placeMarker(location) {
+      // Convert to LatLng if needed
+      if (typeof location.lat === 'number') {
+        location = new google.maps.LatLng(location.lat, location.lng);
+      }
+      
+      if (marker) {
+        marker.setPosition(location);
+      } else {
+        marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          draggable: true
+        });
+        
+        // Add drag listener
+        marker.addListener('dragend', function() {
+          updateCoordinateInputs(marker.getPosition());
+        });
+      }
+      
+      // Update coordinate inputs
+      updateCoordinateInputs(location);
+      
+      // Get address for the location if location service is available
+      if (window.locationService) {
+        window.locationService.getAddressFromCoordinates(location)
+          .then(result => {
+            if (result && result.formatted_address) {
+              // Display address somewhere in the UI if needed
+              console.log("Location address:", result.formatted_address);
+            }
+          })
+          .catch(error => console.warn("Error getting address:", error));
+      }
+    }
+    
+    // Update the hidden coordinate inputs with marker position
+    function updateCoordinateInputs(position) {
+      document.getElementById("longitude").value = position.lng();
+      document.getElementById("latitude").value = position.lat();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check authentication
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      const userRole = localStorage.getItem('userRole');
+      
+      // Show provider fields if user is a provider
+      if (userRole === 'provider') {
+        document.getElementById('providerFields').style.display = 'block';
+        document.getElementById('map-container').style.display = 'block';
+        
+        // Set up status toggle
+        const statusToggle = document.getElementById('statusToggle');
+        statusToggle.addEventListener('change', updateProviderStatus);
+      }
+      
+      // Fetch user profile
+      fetchUserProfile();
+      
+      // Handle form submission
+      document.getElementById('profileForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!isSubmitting) {
+          updateProfile();
+        }
+      });
+    });
+    
+    // Update provider status
+    async function updateProviderStatus(e) {
+      try {
+        // Only allow toggling between online and offline
+        // Get current status from localStorage
+        const currentStatus = localStorage.getItem('providerStatus');
+        
+        // If current status is not offline or online, don't allow toggling
+        if (currentStatus === 'active' || currentStatus === 'in-progress') {
+          e.target.checked = (currentStatus === 'active' || currentStatus === 'online');
+          showAlert('warning', `Cannot change status while ${currentStatus}. Please complete your current job first.`);
+          return;
+        }
+        
+        const newStatus = e.target.checked ? 'online' : 'offline';
+        const formContainer = document.querySelector('.profile-container');
+        formContainer.classList.add('loading');
+        
+        const response = await fetch('http://localhost:3000/api/users/status', {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify({ status: newStatus })
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to update status');
+        }
+        
+        // Update localStorage with new status
+        localStorage.setItem('providerStatus', newStatus);
+        
+        // Update UI
+        updateStatusUI(newStatus);
+        showAlert('success', `Status updated to ${newStatus}`);
+      } catch (error) {
+        console.error('Error updating status:', error);
+        showAlert('error', error.message || 'Failed to update status');
+        // Reset toggle to previous state
+        e.target.checked = !e.target.checked;
+      } finally {
+        document.querySelector('.profile-container').classList.remove('loading');
+      }
+    }
+    
+    // Update status indicator in UI
+    function updateStatusUI(status) {
+      const statusIndicator = document.getElementById('statusIndicator');
+      const currentStatus = document.getElementById('currentStatus');
+      const statusToggle = document.getElementById('statusToggle');
+      
+      // Remove all status classes
+      statusIndicator.classList.remove('status-online', 'status-offline', 'status-active', 'status-in-progress');
+      
+      // Add appropriate class based on status
+      switch(status) {
+        case 'online':
+          statusIndicator.classList.add('status-online');
+          currentStatus.textContent = 'Online (Available)';
+          statusToggle.checked = true;
+          statusToggle.disabled = false; // Ensure toggle is enabled
+          break;
+        case 'offline':
+          statusIndicator.classList.add('status-offline');
+          currentStatus.textContent = 'Offline (Unavailable)';
+          statusToggle.checked = false;
+          statusToggle.disabled = false; // Ensure toggle is enabled
+          break;
+        case 'active':
+          statusIndicator.classList.add('status-active');
+          currentStatus.textContent = 'Active (Searching)';
+          statusToggle.checked = true; // Active is like online but locked
+          statusToggle.disabled = true; // Disable when active
+          break;
+        case 'in-progress':
+          statusIndicator.classList.add('status-in-progress');
+          currentStatus.textContent = 'In Progress (Working)';
+          statusToggle.checked = true; // In progress is like online but locked
+          statusToggle.disabled = true; // Disable when in progress
+          break;
+        default:
+          statusIndicator.classList.add('status-offline');
+          currentStatus.textContent = 'Status Unknown';
+          statusToggle.checked = false;
+          statusToggle.disabled = false; // Allow changing unknown status
+      }
+    }
+    
+    // Fetch user profile from backend
+    async function fetchUserProfile() {
+      try {
+        const formContainer = document.querySelector('.profile-container');
+        formContainer.classList.add('loading');
+        
+        // Updated API endpoint with localhost
+        const response = await fetch('http://localhost:3000/api/profile', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch profile: ${response.status}`);
+        }
+        
+        const profile = await response.json();
+        
+        // Store username in localStorage for cross-page synchronization
+        if (profile.userName) {
+          localStorage.setItem('userName', profile.userName);
+        }
+        
+        // Fill the form with profile data
+        document.getElementById('userName').value = profile.userName || '';
+        document.getElementById('email').value = profile.email || '';
+        document.getElementById('contactNumber').value = profile.contactNumber || '';
+        
+        // Fill address fields if available
+        if (profile.address) {
+          document.getElementById('street').value = profile.address.street || '';
+          document.getElementById('city').value = profile.address.city || '';
+          document.getElementById('state').value = profile.address.state || '';
+          document.getElementById('postalCode').value = profile.address.postalCode || '';
+          document.getElementById('country').value = profile.address.country || '';
+        }
+        
+        // For providers, handle skills and location
+        if (profile.role === 'provider') {
+          // Check skills checkboxes
+          if (profile.skills && Array.isArray(profile.skills)) {
+            profile.skills.forEach(skill => {
+              const checkbox = document.querySelector(`input[value="${skill}"]`);
+              if (checkbox) checkbox.checked = true;
+            });
+          }
+          
+          // Set location on map if available
+          if (profile.location && profile.location.coordinates && 
+              profile.location.coordinates.length === 2 && 
+              map) { // Ensure map is initialized
+            const [longitude, latitude] = profile.location.coordinates;
+            const location = { lat: latitude, lng: longitude };
+            
+            // Center map on user's location
+            map.setCenter(location);
+            
+            // Place marker
+            placeMarker(new google.maps.LatLng(latitude, longitude));
+          }
+          
+          // Fetch the most current status from backend
+          try {
+            const statusResponse = await fetch('http://localhost:3000/api/users/status', {
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+              }
+            });
+            
+            if (statusResponse.ok) {
+              const statusData = await statusResponse.json();
+              if (statusData.status) {
+                // Update localStorage with the backend status
+                localStorage.setItem('providerStatus', statusData.status);
+                // Update UI with the fetched status
+                updateStatusUI(statusData.status);
+              } else {
+                // Use profile status from the profile response as fallback
+                updateStatusUI(profile.status || 'offline');
+                localStorage.setItem('providerStatus', profile.status || 'offline');
+              }
+            } else {
+              // Fallback to profile status
+              updateStatusUI(profile.status || 'offline');
+              localStorage.setItem('providerStatus', profile.status || 'offline');
+            }
+          } catch (statusError) {
+            console.error('Error fetching status:', statusError);
+            // Fallback to profile status
+            updateStatusUI(profile.status || 'offline');
+            localStorage.setItem('providerStatus', profile.status || 'offline');
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        showAlert('warning', 'Using default profile information. You can update and save your details.');
+        
+        // Try to at least fill in known information from localStorage
+        const userName = localStorage.getItem('userName');
+        if (userName) {
+          document.getElementById('userName').value = userName;
+        }
+        
+        // Set default values for fields that should never be empty
+        if (!document.getElementById('userName').value) {
+          document.getElementById('userName').value = 'User_' + Math.floor(Math.random() * 1000);
+        }
+      } finally {
+        document.querySelector('.profile-container').classList.remove('loading');
+      }
+    }
+    
+    // Update user profile
+    async function updateProfile() {
+      try {
+        if (isSubmitting) return;
+        isSubmitting = true;
+        
+        const formContainer = document.querySelector('.profile-container');
+        formContainer.classList.add('loading');
+        
+        // Collect form data
+        const userName = document.getElementById('userName').value;
+        const contactNumber = document.getElementById('contactNumber').value;
+        
+        // Build address object
+        const address = {
+          street: document.getElementById('street').value,
+          city: document.getElementById('city').value,
+          state: document.getElementById('state').value,
+          postalCode: document.getElementById('postalCode').value,
+          country: document.getElementById('country').value
+        };
+        
+        // Create the profile update data
+        const profileData = {
+          userName,
+          contactNumber,
+          address
+        };
+        
+        // For providers, add skills and location
+        if (localStorage.getItem('userRole') === 'provider') {
+          // Get selected skills
+          const skillCheckboxes = document.querySelectorAll('input[name="skills"]:checked');
+          const skills = Array.from(skillCheckboxes).map(checkbox => checkbox.value);
+          profileData.skills = skills;
+          
+          // Get location coordinates
+          const longitude = document.getElementById('longitude').value;
+          const latitude = document.getElementById('latitude').value;
+          
+          if (longitude && latitude) {
+            profileData.location = {
+              type: 'Point',
+              coordinates: [parseFloat(longitude), parseFloat(latitude)]
+            };
+          }
+        }
+        
+        // Send profile update request with the correct endpoint
+        const response = await fetch('http://localhost:3000/api/profile', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify(profileData)
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to update profile');
+        }
+        
+        // Update user name in localStorage for better cross-page sync
+        if (userName && userName !== localStorage.getItem('userName')) {
+          localStorage.setItem('userName', userName);
+        }
+        
+        showAlert('success', 'Profile updated successfully!');
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        showAlert('error', error.message || 'Failed to update profile. Please try again later.');
+      } finally {
+        document.querySelector('.profile-container').classList.remove('loading');
+        isSubmitting = false;
+      }
+    }
+    
+    // Show alert message
+    function showAlert(type, message) {
+      const alertContainer = document.getElementById('alertContainer');
+      
+      // Create alert element
+      const alertEl = document.createElement('div');
+      
+      // Set appropriate class based on type
+      if (type === 'success') {
+        alertEl.className = 'alert alert-success';
+      } else if (type === 'warning') {
+        alertEl.className = 'alert alert-warning';
+        alertEl.style.backgroundColor = '#fff3cd';
+        alertEl.style.color = '#856404';
+        alertEl.style.borderColor = '#ffeeba';
+      } else {
+        alertEl.className = 'alert alert-danger';
+      }
+      
+      alertEl.textContent = message;
+      
+      // Clear previous alerts
+      alertContainer.innerHTML = '';
+      
+      // Add new alert
+      alertContainer.appendChild(alertEl);
+      
+      // Auto dismiss after 5 seconds
+      setTimeout(() => {
+        alertEl.remove();
+      }, 5000);
+    }
+    
+    // Add ability to search for location on the map
+    function addLocationSearch() {
+      const mapContainer = document.getElementById('map-container');
+      
+      // Create location search container
+      const searchContainer = document.createElement('div');
+      searchContainer.className = 'location-search-container';
+      searchContainer.style.cssText = 'position: absolute; top: 10px; left: 10px; right: 10px; z-index: 1; background: white; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); max-width: 400px; margin: 0 auto;';
+      
+      // Create search input
+      const searchInput = document.createElement('input');
+      searchInput.id = 'profileLocationSearchInput';
+      searchInput.type = 'text';
+      searchInput.placeholder = 'Search for your service location...';
+      searchInput.className = 'form-control';
+      
+      // Create search button
+      const useCurrentLocationBtn = document.createElement('button');
+      useCurrentLocationBtn.className = 'btn btn-sm btn-primary mt-2';
+      useCurrentLocationBtn.innerHTML = '<i class="fa fa-location-arrow"></i> Use My Current Location';
+      useCurrentLocationBtn.onclick = function() {
+        getUserLocation();
+      };
+      
+      // Append elements
+      searchContainer.appendChild(searchInput);
+      searchContainer.appendChild(useCurrentLocationBtn);
+      mapContainer.appendChild(searchContainer);
+      
+      // Initialize Places Autocomplete
+      if (window.locationService) {
+        window.locationService.initAutocomplete(
+          searchInput,
+          { types: ['geocode'] },
+          (place) => {
+            if (place.geometry && place.geometry.location) {
+              map.setCenter(place.geometry.location);
+              placeMarker(place.geometry.location);
+            }
+          }
+        );
+      }
+    }
+  </script>
+  
+  <!-- Google Maps API - Single loading point with all required libraries -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&libraries=places&callback=initMap" async defer></script>
+
+</body>
+</html>
