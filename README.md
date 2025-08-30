@@ -58,6 +58,15 @@ Traditional service platforms face multiple challenges:
 
 ---
 
+## 📷 Screenshots  
+
+| ![](./sw_screenshots/login_page.png) <br> **Login Page** | ![](./sw_screenshots/landingpage.png) <br> **Landing Page** | ![](./sw_screenshots/create_request.png) <br> **Create Request** | ![](./sw_screenshots/accept_request.png) <br> **Accept Request** |
+|----------------------------------------------------------|-------------------------------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------|
+| ![](./sw_screenshots/active_requests.png) <br> **Active Requests** | ![](./sw_screenshots/current_service.png) <br> **Current Service** | ![](./sw_screenshots/in_order.png) <br> **In Order** | ![](./sw_screenshots/services.png) <br> **Services** |
+| ![](./sw_screenshots/service_seeker.png) <br> **Service Seeker** | ![](./sw_screenshots/service_provider.png) <br> **Service Provider** | ![](./sw_screenshots/map_availability.png) <br> **Map Availability** | ![](./sw_screenshots/Online.png) <br> **Online Status** |
+
+---
+
 ## ⚙️ Installation & Setup  
 
 ### **1. Clone the Repository**  
@@ -111,23 +120,6 @@ Open `index.html` in your browser (or use a live server in VS Code).
 - **For Service Providers:**  
   - Log in to view available requests.  
   - Accept and complete services using the verification PIN.  
-
----
-# 📷 Screenshots
-
-## 📷 Screenshots  
-
-<p align="center">
-  <img src="./screenshots/login-signup.png" alt="Login / Sign-Up" width="250" />
-  <img src="./screenshots/create-request.png" alt="Create Request (Seeker)" width="250" />
-  <img src="./screenshots/available-requests.png" alt="Available Requests (Provider)" width="250" />
-</p>
-
-<p align="center">
-  <img src="./screenshots/active-requests.png" alt="Active Requests with PIN Verification" width="250" />
-  <img src="./screenshots/service-history.png" alt="Service History & Dashboard" width="250" />
-  <img src="./screenshots/homepage.png" alt="Homepage / About Us" width="250" />
-</p>
 
 ---
 
