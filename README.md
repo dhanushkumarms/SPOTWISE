@@ -1,6 +1,12 @@
 # 🌐 SpotWise  
 *Hyper-local service connection within 5km radius*  
 
+---
+<p align="center">
+  <img src="sw_screenshots/sw_logo_1.png" alt="SpotWise Logo" width="800"/>
+</p>
+
+---
 ![SpotWise Banner](https://img.shields.io/badge/SpotWise-Live-leafgreen?style=for-the-badge&logo=vercel&logoColor=blue)   
 ---
 ![HTML5](https://img.shields.io/badge/HTML5-Frontend-yellow?style=for-the-badge&logo=html5&logoColor=orange)   ![CSS3](https://img.shields.io/badge/CSS3-Frontend-yellow?style=for-the-badge&logo=css3&logoColor=blue)  ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-blueviolet?style=for-the-badge&logo=bootstrap&logoColor=violet) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow?style=for-the-badge&logo=javascript&logoColor=yellow)    
